@@ -14,10 +14,26 @@
   </head>
   <body>
     <div class = "container">
-        <img src="Img/RIP.jpg" id ="gif2" alt="RIP">
+        <video src="Img/Rip.mp4" id="gif2" autoplay loop playsinline></video>
         <h1>
             Ngon
         </h1>
     </div>
+    <script>
+      const video = document.getElementById('gif2');
+      
+      // Thử phát video kèm âm thanh ngay lập tức
+      video.play().catch(error => {
+        // Nếu trình duyệt chặn phát có âm thanh, tự động chuyển sang chế độ tắt tiếng để video vẫn tự chạy
+        console.log("Autoplay unmuted blocked by browser, falling back to muted autoplay.");
+        video.muted = true;
+        video.play();
+        
+        // Khi người dùng click vào trang thì bật lại âm thanh
+        document.addEventListener('click', function() {
+          video.muted = false;
+        }, { once: true });
+      });
+    </script>
   </body>
   </html>
